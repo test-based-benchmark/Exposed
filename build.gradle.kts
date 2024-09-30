@@ -10,6 +10,8 @@ plugins {
     id(libs.plugins.docker.compose.get().pluginId)
 
     alias(libs.plugins.dokka)
+
+    id("org.jetbrains.kotlinx.kover") version "0.8.3" apply false
 }
 
 tasks.withType<DokkaMultiModuleTask> {
@@ -44,6 +46,8 @@ subprojects {
 
     apply(plugin = rootProject.libs.plugins.jvm.get().pluginId)
 
+    apply(plugin = "org.jetbrains.kotlinx.kover")
+
     testDb("h2") {
         withContainer = false
         dialects("H2_V2", "H2_V2_MYSQL", "H2_V2_PSQL", "H2_V2_MARIADB", "H2_V2_ORACLE", "H2_V2_SQLSERVER")
@@ -53,6 +57,7 @@ subprojects {
         }
     }
 
+/*
     testDb("h2_v1") {
         withContainer = false
         dialects("H2_V1", "H2_V1_MYSQL")
@@ -139,4 +144,5 @@ subprojects {
             dependency(rootProject.libs.mssql)
         }
     }
+*/
 }

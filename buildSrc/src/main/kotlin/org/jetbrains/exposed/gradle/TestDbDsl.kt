@@ -87,6 +87,14 @@ fun Project.testDb(name: String, block: TestDb.() -> Unit) {
     tasks.named<Test>("test") {
         delegatedTo(testTask)
     }
+
+    tasks.named("koverXmlReport") {
+        dependsOn(testTask)
+    }
+
+    tasks.named("koverHtmlReport") {
+        dependsOn(testTask)
+    }
 }
 
 private fun Project.configureCompose(db: TestDb) {
